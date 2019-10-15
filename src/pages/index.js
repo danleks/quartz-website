@@ -1,21 +1,29 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
+import styled from 'styled-components';
+import MainTemplate from 'templates/MainTemplate/MainTemplate';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+const StyledHeading = styled.h1`
+  font-size: ${({ theme }) => theme.l};
+`;
+
+const StyledParagraph = styled.p`
+  font-size: ${({ theme }) => theme.s};
+`;
 
 const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+  <div>
+    <MainTemplate>
+      <StyledHeading>hello world</StyledHeading>
+      <StyledParagraph>
+        Lorem Ipsum is simply dummy of the printing and typesetting industry.
+        Lorem Ipsum has been the industry standard dummy text ever since the
+        1500s, when an unknown printer took a galley of type and scrambled it to
+        make a type specimen book. It has survived not only five centuries, but
+        also the leap into electronic typesetting, remaining essentially
+        unchanged.
+      </StyledParagraph>
+    </MainTemplate>
+  </div>
+);
 
-export default IndexPage
+export default IndexPage;
