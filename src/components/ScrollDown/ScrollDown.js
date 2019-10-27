@@ -6,7 +6,7 @@ import ArrowDown from 'assets/images/arrow-down.svg';
 const StyledWrapper = styled.div`
   position: absolute;
   left: 50%;
-  bottom: -1rem;
+  bottom: -2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,15 @@ const StyledWrapper = styled.div`
   height: 4rem;
   border-radius: 50%;
   transform: translate(-50%);
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.lightGrey};
+
+  ${({ theme }) => theme.mq.tablet} {
+    bottom: 8rem;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    bottom: 7.5rem;
+  }
 `;
 
 const StyledIcon = styled(Icon)`

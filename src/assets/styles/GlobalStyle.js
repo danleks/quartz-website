@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&display=swap');
         font-family: 'Source Sans Pro', sans-serif; 
         font-size: 1.6rem;
     }

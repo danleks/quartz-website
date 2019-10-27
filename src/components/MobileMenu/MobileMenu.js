@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StyledMenuWrapper = styled.div`
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,10 @@ const StyledMenuWrapper = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   z-index: 90;
   transition: transform 0.2s ease-in-out;
+
+  ${({ theme }) => theme.mq.desktop} {
+    display: none;
+  }
 `;
 
 const StyledInnerWrapper = styled.ul`
@@ -29,9 +33,14 @@ const StyledInnerWrapper = styled.ul`
 
 const StyledLink = styled.li`
   opacity: ${({ menuIsOpen }) => (menuIsOpen ? '1' : '0')};
-  font-size: ${({ theme }) => theme.fontSize.mobile.m};
+  font-size: ${({ theme }) => theme.fontSize.mobile.s};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   cursor: pointer;
   transition: opacity 0.25s ease-in-out 0.3s;
+
+  ${({ theme }) => theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.fontSize.tablet.m};
+  }
 `;
 
 const GetCurrentOffer = styled.button`
@@ -40,15 +49,20 @@ const GetCurrentOffer = styled.button`
   width: 100%;
   height: 8rem;
   border: none;
-  font-size: ${({ theme }) => theme.fontSize.mobile.m};
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.black};
+  font-size: ${({ theme }) => theme.fontSize.mobile.s};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  color: ${({ theme }) => theme.color.black};
+  background-color: ${({ theme }) => theme.color.lightGrey};
   cursor: pointer;
   transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0%' : '100%')});
   transition: transform 0.2s ease-in-out 0.4s;
+
+  ${({ theme }) => theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.fontSize.tablet.m};
+  }
 `;
 
-const MenuItems = ['O nas', 'Produkty', 'Kontakt'];
+const MenuItems = ['O nas', 'Usługi', 'Produkty', 'Kontakt'];
 
 const MobileMenu = ({ menuIsOpen }) => (
   <StyledMenuWrapper menuIsOpen={menuIsOpen}>

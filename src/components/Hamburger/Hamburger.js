@@ -10,13 +10,16 @@ const StyledHamburgerButton = styled.button`
   background-color: transparent;
   transition: transform 0.1s cubic-bezier(0.53, -0.4, 0.55, 1.36);
   cursor: pointer;
+
+  ${({ theme }) => theme.mq.desktop} {
+    display: none;
+  }
 `;
 
 const StyledHamburgerContent = styled.div`
   position: relative;
   width: 100%;
   height: ${({ menuIsOpen }) => (menuIsOpen ? '0' : '2px')};
-
   background-color: ${({ theme }) => theme.color.black};
 
   ::before,
