@@ -1,39 +1,55 @@
 const theme = {
   color: {
-    primary: 'hsla(296, 31%, 26%, 0.92)',
-    lightDark: 'hsla(300, 1%, 19%, 0.8)',
-    black: 'hsla(0, 0%, 5%, 1)',
-    lightGrey: 'hsla(0, 0%, 97%, 1)',
-    midGrey: 'hsla(0, 8%,90%,1)',
-    darkGrey: 'hsla(0,0%,72%, 1)',
+    primary: 'hsla(289, 27%, 24%, 1)',
+    primaryLight: 'hsla(289, 9%, 42%, .5)',
+    black: 'hsla(0, 0%, 20%, 1)',
+    dark: 'hsla(0, 0%, 0%, 1)',
     white: 'hsla(0, 0%, 100%, 1)',
+    lightWhite: 'hsla(0, 0%, 89%,1)',
+    lightGrey: 'hsla(0, 0%, 97%, 1)',
+    midGrey: 'hsla(0, 0%, 92%, 1)',
+    darkGrey: 'hsla(0,0%,52%, 1)',
+    lightBlue: 'hsla(209, 100%, 91%)',
+    darkBlue: 'hsla(209, 100%, 30%)',
   },
 
   fontSize: {
     mobile: {
-      xs: '1.2rem',
+      xxs: '1rem',
+      xs: '1.3rem',
       s: '1.6rem',
       m: '2.2rem',
-      l: '4.5rem',
+      l: '3rem',
+      xl: '3.5rem',
+      xxl: '4.5rem',
     },
 
     tablet: {
-      s: '1.6rem',
-      m: '2.5rem',
-      l: '9rem',
+      xxxs: '1.2rem',
+      xxs: '1.4rem',
+      xs: '1.6rem',
+      m: '2rem',
+      l: '2.7rem',
+      xl: '3rem',
+      xxl: '4rem',
+      xxxl: '9rem',
     },
 
     desktop: {
-      s: '2rem',
-      m: '2.5rem',
-      l: '11rem',
+      xxs: '1.6rem',
+      xs: '2rem',
+      s: '2.5rem',
+      m: '3rem',
+      l: '4rem',
+      xl: '4.2rem',
+      xxl: '11rem',
     },
   },
 
   fontWeight: {
     light: '300',
     regular: '400',
-    bold: '600',
+    bold: '700',
   },
 
   mq: {

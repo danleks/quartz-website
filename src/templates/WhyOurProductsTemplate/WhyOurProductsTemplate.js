@@ -1,17 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import ColorIcon from 'assets/images/color.svg';
-import HammerIcon from 'assets/images/hammer.svg';
-import HandIcon from 'assets/images/hand.svg';
-import LeafIcon from 'assets/images/leaf.svg';
-import ManIcon from 'assets/images/man.svg';
-import RoseIcon from 'assets/images/rose.svg';
-import HeroImg from 'assets/images/products.svg';
+import ColorIcon from 'assets/images/icons/color.svg';
+import HammerIcon from 'assets/images/icons/hammer.svg';
+import HandIcon from 'assets/images/icons/hand.svg';
+import LeafIcon from 'assets/images/icons/leaf.svg';
+import ManIcon from 'assets/images/icons/man.svg';
+import RoseIcon from 'assets/images/icons/rose.svg';
 
 import Icon from 'components/Icon/Icon';
 import Button from 'components/Button/Button';
 
-const productsOverview = [
+const whyOurProducts = [
   {
     icon: HammerIcon,
     title: 'Trwałe',
@@ -51,8 +50,8 @@ const productsOverview = [
 ];
 
 const StyledIcon = styled(Icon)`
-  width: 30%;
-  border: 1px solid #e6e6e6;
+  width: 22%;
+  border: 1px solid ${({ theme }) => theme.color.midGrey};
   border-radius: 30%;
   padding: 14px;
 `;
@@ -62,33 +61,60 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 7rem 0rem 4rem;
-  background-image: url(${HeroImg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: -1rem -1rem;
+  padding: 8rem 0rem;
+  border-top: 1px solid ${({ theme }) => theme.color.midGrey};
+  background-image: linear-gradient(
+    90deg,
+    white 0,
+    ${({ theme }) => theme.color.lightGrey} 0
+  );
 
   ${({ theme }) => theme.mq.small} {
-    padding: 4rem 0rem;
+    padding: 12rem 0rem;
   }
 
   ${({ theme }) => theme.mq.tablet} {
-    padding: 7rem 4rem 7rem;
+    padding: 12rem 4rem;
+    background-image: linear-gradient(
+      98deg,
+      white 50%,
+      ${({ theme }) => theme.color.lightGrey} 50%
+    );
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    padding: 12rem 4rem 10rem;
+    background-image: linear-gradient(
+      115deg,
+      white 50%,
+      ${({ theme }) => theme.color.lightGrey} 50%
+    );
   }
 `;
 
 const StyledHeading = styled.h2`
+  font-size: ${({ theme }) => theme.fontSize.mobile.m};
   text-align: center;
+  color: ${({ theme }) => theme.color.black};
 
   ${({ theme }) => theme.mq.tablet} {
-    font-size: 4rem;
+    width: 70rem;
+    font-size: ${({ theme }) => theme.fontSize.tablet.xxl};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
     letter-spacing: 1px;
   }
+
+  ${({ theme }) => theme.mq.desktop} {
+    font-size: ${({ theme }) => theme.fontSize.desktop.l};
+  }
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 4rem;
 `;
 
 const StyledList = styled.ul`
   max-width: 115rem;
-  padding-bottom: 20rem;
   margin-top: 4rem;
   list-style: none;
 
@@ -98,7 +124,7 @@ const StyledList = styled.ul`
   }
 
   ${({ theme }) => theme.mq.desktop} {
-    margin-top: 7rem;
+    margin-top: 10rem;
   }
 `;
 
@@ -107,7 +133,8 @@ const StyledListItem = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 6rem;
+  padding: 5rem 0;
+  border-top: 1px solid ${({ theme }) => theme.color.midGrey};
 
   ${({ theme }) => theme.mq.tablet} {
     flex: 1;
@@ -116,63 +143,58 @@ const StyledListItem = styled.li`
 
   ${({ theme }) => theme.mq.preDesktop} {
     min-width: 30%;
-  }
-
-  ${({ theme }) => theme.mq.preDesktop} {
-    margin-top: 9rem;
+    padding: 10rem 0;
   }
 `;
 
 const StyledSubHeading = styled.h3`
+  margin-top: 4rem;
   font-size: ${({ theme }) => theme.fontSize.mobile.m};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin-top: 4rem;
-
-  ${({ theme }) => theme.mq.desktop} {
-    font-size: 2.5rem;
-  }
-`;
-
-const StyledParagraph = styled.p`
-  width: 70%;
-  margin-top: 1.5rem;
-  font-size: ${({ theme }) => theme.fontSize.mobile.s};
-  text-align: center;
-  color: #676767;
-
-  ${({ theme }) => theme.mq.desktop} {
-    font-size: 1.8rem;
-  }
-`;
-
-const StyledButtonWrapper = styled.li`
-  display: flex;
-  justify-content: center;
-  margin: 4rem auto;
+  color: ${({ theme }) => theme.color.black};
 
   ${({ theme }) => theme.mq.tablet} {
-    margin: 9rem auto;
+    font-size: ${({ theme }) => theme.fontSize.tablet.m};
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    font-size: ${({ theme }) => theme.fontSize.desktop.s};
   }
 `;
 
-const ProductsOverviewTemplate = () => (
-  <StyledWrapper>
+const StyledParagraph = styled.span`
+  width: 55%;
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.mobile.xs};
+  color: ${({ theme }) => theme.color.darkGrey};
+
+  ${({ theme }) => theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.fontSize.tablet.xxs};
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 70%;
+    font-size: ${({ theme }) => theme.fontSize.desktop.xxs};
+  }
+`;
+
+const WhyOurProductsTemplate = () => (
+  <StyledWrapper id="dlaczego-nasze-produkty">
     <StyledHeading>
       Dowiedź się dlaczego nasze konglomeraty są wyjątkowe
     </StyledHeading>
+    <StyledButton>Poznaj ofertę</StyledButton>
     <StyledList>
-      {productsOverview.map(productOverview => (
+      {whyOurProducts.map(productOverview => (
         <StyledListItem key={productOverview.title}>
           <StyledIcon src={productOverview.icon} />
           <StyledSubHeading>{productOverview.title}</StyledSubHeading>
           <StyledParagraph>{productOverview.text}</StyledParagraph>
         </StyledListItem>
       ))}
-      <StyledButtonWrapper>
-        <Button product>Poznaj ofertę</Button>
-      </StyledButtonWrapper>
     </StyledList>
   </StyledWrapper>
 );
 
-export default ProductsOverviewTemplate;
+export default WhyOurProductsTemplate;

@@ -12,8 +12,8 @@ const StyledWrapper = styled.div`
   padding: 0 4rem;
   background-image: linear-gradient(
     to right,
-    hsla(40, 12%, 91%, 1),
-    hsla(40, 12%, 91%, 1) 35%,
+    ${({ theme }) => theme.color.lightGrey},
+    ${({ theme }) => theme.color.lightGrey} 35%,
     ${({ theme }) => theme.color.white} 35%
   );
 
@@ -22,7 +22,7 @@ const StyledWrapper = styled.div`
   }
 
   ${({ theme }) => theme.mq.tablet} {
-    padding: 0 13rem;
+    padding: 0 10rem;
   }
 
   ${({ theme }) => theme.mq.desktop} {
@@ -34,48 +34,38 @@ const StyledWrapper = styled.div`
   }
 `;
 
-// const StyledHeading = styled.h2`
-//     font-size: ${({ theme }) => theme.fontSize.mobile.l};
-//     font-weight: ${({ theme }) => theme.fontWeight.regular};
-//     text-align: center;
-// `;
-
 const StyledParagraph = styled.p`
   margin-top: 2rem;
-  word-spacing: 4px;
+  word-spacing: 3px;
   font-size: ${({ theme }) => theme.fontSize.mobile.m};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
   text-align: left;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
   line-height: 1.6;
 
   ${({ theme }) => theme.mq.tablet} {
-    font-size: 2.5rem;
-    letter-spacing: 1px;
+    font-size: ${({ theme }) => theme.fontSize.tablet.l};
   }
 
   ${({ theme }) => theme.mq.desktop} {
-    font-size: 3rem;
+    font-size: ${({ theme }) => theme.fontSize.desktop.m};
   }
 
   ${({ theme }) => theme.mq.huge} {
-    font-size: 4rem;
+    font-size: ${({ theme }) => theme.fontSize.desktop.xl};
   }
 `;
 
 const StyledButton = styled(Button)`
   align-self: flex-start;
-  border-color: ${({ theme }) => theme.color.black};
   margin-top: 3rem;
-  color: ${({ theme }) => theme.color.black};
 `;
 
 const AboutTemplate = () => (
-  <StyledWrapper>
-    {/* <StyledHeading>O nas</StyledHeading> */}
+  <StyledWrapper id="o-nas">
     <StyledParagraph>
       Kwarctex jest dystrybutorem konglameratów kwarcowych. Posiadamy wyłączne
       prawo na sprzedaż produktów Belenco, co zapewnia wysoką jakość w
-      konkurencyjnej cenie.{' '}
+      konkurencyjnej cenie.
     </StyledParagraph>
     <StyledButton>Poznaj ofertę</StyledButton>
   </StyledWrapper>

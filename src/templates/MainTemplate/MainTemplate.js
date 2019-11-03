@@ -5,25 +5,34 @@ import GlobalStyle from 'assets/styles/GlobalStyle';
 import SEO from 'components/SEO/SEO';
 import theme from 'assets/styles/theme';
 import Header from 'components/Header/Header';
+import ContactTemplate from 'templates/ContactTemplate/ContactTemplate';
 
-const MainTemplate = ({ children }) => (
-  <>
-    <SEO />
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <>
-        <Header />
-        {children}
-      </>
-    </ThemeProvider>
-  </>
-);
+const MainTemplate = ({ children, pathname }) => {
+  return (
+    <>
+      <SEO />
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <>
+          <Header pathname={pathname} />
+          {children}
+          <ContactTemplate />
+        </>
+      </ThemeProvider>
+    </>
+  );
+};
 
 MainTemplate.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  pathname: PropTypes.string,
+};
+
+MainTemplate.defaultProps = {
+  pathname: '/',
 };
 
 export default MainTemplate;

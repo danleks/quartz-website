@@ -1,110 +1,104 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// const StyledServiceBackground = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     width: 100%;
-//     height: auto;
-//     margin-top: -1px;
-//     background-color: hsl(195, 3%, 28%);
+const services = [
+  {
+    title: 'Konglomeraty',
+    description:
+      'is simply dummy text of the printing and typesetting industry',
+  },
+  {
+    title: 'Cięcie płyty',
+    description:
+      'is simply dummy text of the printing and typesetting industry',
+  },
+  {
+    title: 'Dostawa',
+    description:
+      'is simply dummy text of the printing and typesetting industry',
+  },
+];
 
-//     ${({ theme }) => theme.mq.tablet} {
-//         justify-content: center;
-//         flex-direction: row;
-//         height: 30rem;
-//         clip-path: polygon(0% 0%,100% 14%,100% 100%,0 100%);
-//     }
+const StyledServiceWrapper = styled.div`
+  padding: 4rem 0;
+  background-color: ${({ theme }) => theme.color.primary};
+`;
 
-//     ${({ theme }) => theme.mq.desktop} {
-//         flex-direction: row;
-//         width: 100%;
-//         height: 32rem;
-//         margin-top: auto;
-//         background-color: rgba(49, 48, 49, .8);
-//         clip-path: polygon(0% 0%,100% 28%,100% 100%,0 100%);
-//     }
-// `;
-
-const StyledServiceWrapper = styled.ul`
+const StyledServiceList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 40rem;
-  padding: 4rem 0;
-  margin-top: -1px;
   list-style: none;
-  background-color: hsl(195, 3%, 28%);
 
   ${({ theme }) => theme.mq.tablet} {
     width: 100%;
     flex-direction: row;
     justify-content: center;
-    padding: 4rem 4rem;
   }
 `;
 
 const StyledService = styled.li`
-  width: 61%;
+  width: 45%;
   text-align: center;
   color: ${({ theme }) => theme.color.white};
+
+  :not(:last-child) {
+    margin-bottom: 4rem;
+  }
 
   ${({ theme }) => theme.mq.tablet} {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 24rem;
-    margin-top: 0;
+    width: 17rem;
     margin-right: 4rem;
+
+    :not(:last-child) {
+      margin-bottom: 0;
+    }
   }
 
   h2 {
-    font-size: ${({ theme }) => theme.fontSize.mobile.m};
-    font-weight: ${({ theme }) => theme.fontWeight.regular};
+    font-size: ${({ theme }) => theme.fontSize.mobile.s};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
 
     ${({ theme }) => theme.mq.tablet} {
       font-size: ${({ theme }) => theme.fontSize.tablet.m};
     }
 
     ${({ theme }) => theme.mq.desktop} {
-      font-size: ${({ theme }) => theme.fontSize.desktop.m};
+      font-size: ${({ theme }) => theme.fontSize.desktop.xs};
     }
   }
 
   p {
     margin-top: 1rem;
-    font-size: ${({ theme }) => theme.fontSize.mobile.s};
+    font-size: ${({ theme }) => theme.fontSize.mobile.xs};
     font-weight: ${({ theme }) => theme.fontWeight.light};
+    color: ${({ theme }) => theme.color.lightWhite};
 
     ${({ theme }) => theme.mq.tablet} {
-      font-size: ${({ theme }) => theme.fontSize.tablet.s};
+      font-size: ${({ theme }) => theme.fontSize.tablet.xxs};
     }
 
     ${({ theme }) => theme.mq.desktop} {
-      font-size: ${({ theme }) => theme.fontSize.desktop.s};
+      font-size: ${({ theme }) => theme.fontSize.desktop.xxs};
     }
   }
 `;
 
 const ServicesTemplate = () => (
-  // <StyledServiceBackground>
-  <StyledServiceWrapper>
-    <StyledService>
-      <h2>Konglomeraty</h2>
-      <p>is simply dummy text of the printing and typesetting industry</p>
-    </StyledService>
-    <StyledService>
-      <h2>Cięcie płyty</h2>
-      <p>is simply dummy text of the printing and typesetting industry</p>
-    </StyledService>
-    <StyledService>
-      <h2>Dostawa</h2>
-      <p>is simply dummy text of the printing and typesetting industry</p>
-    </StyledService>
+  <StyledServiceWrapper id="uslugi">
+    <StyledServiceList>
+      {services.map(service => (
+        <StyledService key={service.title}>
+          <h2>{service.title}</h2>
+          <p>{service.description}</p>
+        </StyledService>
+      ))}
+    </StyledServiceList>
   </StyledServiceWrapper>
-  // </StyledServiceBackground>
 );
 
 export default ServicesTemplate;

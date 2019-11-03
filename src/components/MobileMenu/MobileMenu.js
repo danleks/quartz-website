@@ -1,21 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import window from 'global';
+// import { Link } from 'gatsby';
 import styled from 'styled-components';
+import Button from 'components/Button/Button';
 
 const StyledMenuWrapper = styled.div`
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;
+  height: ${window.innerHeight}px;
+  min-height: 100vh;
   width: 100%;
-  transform: translateX(${({ menuIsOpen }) => (menuIsOpen ? '0' : '100%')});
+  transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0px' : '-200%')});
   background-color: ${({ theme }) => theme.color.white};
   z-index: 90;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.4s ease-in-out;
 
   ${({ theme }) => theme.mq.desktop} {
     display: none;
@@ -27,58 +31,93 @@ const StyledInnerWrapper = styled.ul`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 22rem;
+  width: 100%;
+  height: 70%;
   list-style: none;
 `;
 
-const StyledLink = styled.li`
-  opacity: ${({ menuIsOpen }) => (menuIsOpen ? '1' : '0')};
-  font-size: ${({ theme }) => theme.fontSize.mobile.s};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  cursor: pointer;
-  transition: opacity 0.25s ease-in-out 0.3s;
-
-  ${({ theme }) => theme.mq.tablet} {
-    font-size: ${({ theme }) => theme.fontSize.tablet.m};
-  }
-`;
-
-const GetCurrentOffer = styled.button`
-  position: absolute;
-  bottom: 0;
+const StyledLinkWrapper = styled.li`
+  position: relative;
   width: 100%;
-  height: 8rem;
-  border: none;
+  padding: 1rem 0;
+  transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0' : '-1rem')});
+  text-align: center;
+  opacity: ${({ menuIsOpen }) => (menuIsOpen ? '1' : '0')};
+  cursor: pointer;
+  transition: opacity 0.35s ease-in-out 0.4s, background-color 0.35s ease-in-out .6s, transform .45s ease-in-out 0.6s;
+
+  /* &:hover {
+    background-color: ${({ theme }) => theme.color.lightBlue};
+  } */
+`;
+
+const StyledLink = styled.a`
   font-size: ${({ theme }) => theme.fontSize.mobile.s};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  text-decoration: none;
   color: ${({ theme }) => theme.color.black};
-  background-color: ${({ theme }) => theme.color.lightGrey};
-  cursor: pointer;
-  transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0%' : '100%')});
-  transition: transform 0.2s ease-in-out 0.4s;
 
   ${({ theme }) => theme.mq.tablet} {
     font-size: ${({ theme }) => theme.fontSize.tablet.m};
   }
 `;
 
-const MenuItems = ['O nas', 'Usługi', 'Produkty', 'Kontakt'];
+// const GetCurrentOfferWrapper = styled.div`
+//   position: absolute;
+//   bottom: 0;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   height: 8rem;
+//   background-color: ${({ theme }) => theme.color.primaryLight};
+//   transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0' : '100%')});
+//   transition: transform 1s ease-in-out 0.4s;
+// `;
 
-const MobileMenu = ({ menuIsOpen }) => (
-  <StyledMenuWrapper menuIsOpen={menuIsOpen}>
-    <StyledInnerWrapper>
-      {MenuItems.map(item => (
-        <StyledLink key={item} menuIsOpen={menuIsOpen}>
-          {item}
-        </StyledLink>
-      ))}
-    </StyledInnerWrapper>
-    <GetCurrentOffer menuIsOpen={menuIsOpen}>Pobierz cennik</GetCurrentOffer>
-  </StyledMenuWrapper>
-);
+const MenuItems = [
+  {
+    title: 'Usługi',
+    linkTo: '#uslugi',
+  },
+  {
+    title: 'O nas',
+    linkTo: '#o-nas',
+  },
+  {
+    title: 'Produkty',
+    linkTo: '#dlaczego-nasze-produkty',
+  },
+  {
+    title: 'Kontakt',
+    linkTo: '#kontakt',
+  },
+];
+
+const MobileMenu = ({ menuIsOpen, menuHandler }) => {
+  return (
+    <StyledMenuWrapper menuIsOpen={menuIsOpen}>
+      <StyledInnerWrapper>
+        {MenuItems.map(item => (
+          <StyledLinkWrapper
+            key={item.title}
+            menuIsOpen={menuIsOpen}
+            onClick={menuHandler}
+          >
+            <StyledLink href={item.linkTo}>{item.title}</StyledLink>
+          </StyledLinkWrapper>
+        ))}
+        <StyledLinkWrapper menuIsOpen={menuIsOpen}>
+          <Button menu>Pobierz cennik</Button>
+        </StyledLinkWrapper>
+      </StyledInnerWrapper>
+    </StyledMenuWrapper>
+  );
+};
 
 MobileMenu.propTypes = {
   menuIsOpen: PropTypes.bool.isRequired,
+  menuHandler: PropTypes.func.isRequired,
 };
 
 export default MobileMenu;

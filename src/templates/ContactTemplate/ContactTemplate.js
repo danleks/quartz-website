@@ -1,46 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from 'components/Button/Button';
 
 const StyledFooter = styled.footer`
   position: relative;
-  padding: 4rem 4rem 2rem 4rem;
-  margin-top: -13rem;
-  background-color: hsl(195, 3%, 28%);
+  padding: 2rem 10%;
+  border: 1px solid ${({ theme }) => theme.color.midGrey};
+  background-color: ${({ theme }) => theme.color.white};
 
   ${({ theme }) => theme.mq.tablet} {
     display: flex;
     flex-wrap: wrap;
   }
-`;
 
-const StyledHeading = styled.h2`
-  width: 100%;
-  font-size: 3rem;
-  text-align: center;
-  color: ${({ theme }) => theme.color.white};
-
-  ${({ theme }) => theme.mq.tablet} {
-    font-size: 4.5rem;
+  ${({ theme }) => theme.mq.desktop} {
+    padding: 2rem 0 2rem 10%;
   }
 `;
 
-const StyledInnerWrapper = styled.div`
+const StyledButton = styled(Button)`
+  position: absolute;
+  top: -3.8rem;
+  left: 10%;
+`;
+
+const StyledContactWrapper = styled.ul`
+  width: 100%;
+
   ${({ theme }) => theme.mq.desktop} {
     display: flex;
-    width: 80%;
-    margin: auto;
+    flex-wrap: wrap;
+    max-width: 150rem;
+    list-style: none;
   }
 
   ${({ theme }) => theme.mq.huge} {
-    width: 50%;
+    width: 80%;
   }
 `;
 
-const StyledContactWrapper = styled.div`
+const StyledInnerWrapper = styled.li`
   display: flex;
   flex-direction: column;
-  margin-top: 4rem;
-  color: ${({ theme }) => theme.color.white};
+  margin: 5rem 0;
+  color: ${({ theme }) => theme.color.black};
 
   ${({ theme }) => theme.mq.tablet} {
     flex: 1;
@@ -48,68 +51,105 @@ const StyledContactWrapper = styled.div`
 
   h3 {
     line-height: 3;
-    font-size: ${({ theme }) => theme.fontSize.mobile.xs};
+    font-size: ${({ theme }) => theme.fontSize.mobile.xxs};
     text-transform: uppercase;
-    color: hsl(0, 0%, 52%);
+    color: ${({ theme }) => theme.color.darkGrey};
+
+    ${({ theme }) => theme.mq.tablet} {
+      font-size: ${({ theme }) => theme.fontSize.tablet.xxxs};
+    }
   }
 
   span {
     line-height: 2;
-    font-size: ${({ theme }) => theme.fontSize.mobile.s};
+    font-size: ${({ theme }) => theme.fontSize.mobile.xs};
+    color: ${({ theme }) => theme.color.black};
+
+    ${({ theme }) => theme.mq.tablet} {
+      font-size: ${({ theme }) => theme.fontSize.tablet.xs};
+    }
+  }
+
+  :last-child {
+    padding-top: 2rem;
+    border-top: 1px solid ${({ theme }) => theme.color.midGrey};
+    margin-bottom: 0;
+
+    ${({ theme }) => theme.mq.tablet} {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      flex: unset;
+      width: 100%;
+      height: 8rem;
+      margin: 4rem auto 0;
+    }
+
+    ${({ theme }) => theme.mq.desktop} {
+      margin: 0 auto;
+    }
+
+    span {
+      font-size: ${({ theme }) => theme.fontSize.mobile.xs};
+      font-weight: ${({ theme }) => theme.fontWeight.light};
+      text-align: center;
+      color: ${({ theme }) => theme.color.darkGrey};
+
+      ${({ theme }) => theme.mq.tablet} {
+        font-size: ${({ theme }) => theme.fontSize.tablet.xxs};
+      }
+    }
   }
 `;
 
-const StyledCopyrightWrapper = styled(StyledContactWrapper)`
-  padding: 2rem 0 0 0;
-  border-top: 1px solid hsl(0, 0%, 52%);
+const StyledMailTo = styled.a`
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease-in-out;
 
-  ${({ theme }) => theme.mq.tablet} {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex: unset;
-    width: 100%;
-    height: 8rem;
-    margin: 4rem auto 0;
-  }
-
-  span {
-    text-align: center;
-    color: ${({ theme }) => theme.color.white};
+  :hover {
+    color: ${({ theme }) => theme.color.darkBlue};
   }
 `;
 
 const ContactTemplate = () => (
-  <StyledFooter>
-    <StyledHeading>Kontakt</StyledHeading>
-    <StyledInnerWrapper>
-      <StyledContactWrapper>
+  <StyledFooter id="kontakt">
+    <StyledButton contact href="mailto:kwarctex@gmail.com">
+      Kontakt
+    </StyledButton>
+    <StyledContactWrapper>
+      <StyledInnerWrapper>
         <h3>Adres</h3>
         <span>Belenco</span>
         <span>ul. Lotnicza 1</span>
         <span>
           05-800 Nowy Dwór <br /> Mazowiecki
         </span>
-      </StyledContactWrapper>
-      <StyledContactWrapper>
+      </StyledInnerWrapper>
+      <StyledInnerWrapper>
         <h3>Dane firmowe</h3>
         <span>VAT: PL12345567789</span>
         <span>REGON: 1234324</span>
         <span>KRS: 34343423</span>
-      </StyledContactWrapper>
-      <StyledContactWrapper>
+      </StyledInnerWrapper>
+      <StyledInnerWrapper>
         <h3>Numer telefonu</h3>
         <span>+48 123 456 789</span>
-      </StyledContactWrapper>
-      <StyledContactWrapper>
+      </StyledInnerWrapper>
+      <StyledInnerWrapper>
         <h3>E-mail</h3>
-        <span>kwarctex@gmail.com</span>
-      </StyledContactWrapper>
-    </StyledInnerWrapper>
-    <StyledCopyrightWrapper>
-      <span>&copy; Copyright 2019 Belenco. All Rights Reserved.</span>
-    </StyledCopyrightWrapper>
+        <span>
+          <StyledMailTo href="mailto:kwarctex@gmail.com">
+            kwarctex@gmail.com
+          </StyledMailTo>
+        </span>
+      </StyledInnerWrapper>
+      <StyledInnerWrapper>
+        <span>&copy; Copyright 2019 Belenco. All Rights Reserved.</span>
+      </StyledInnerWrapper>
+    </StyledContactWrapper>
   </StyledFooter>
 );
 

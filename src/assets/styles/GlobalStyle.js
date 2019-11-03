@@ -1,7 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
+import 'typeface-nunito-sans';
 
 const GlobalStyle = createGlobalStyle`
     *, *::before, *::after {
+        -webkit-tap-highlight-color: transparent;
         box-sizing: border-box;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -11,11 +13,11 @@ const GlobalStyle = createGlobalStyle`
 
     html {
         font-size: 62.5%;
+        scroll-behavior: smooth;
     }
 
     body {
-        @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&display=swap');
-        font-family: 'Source Sans Pro', sans-serif; 
+        font-family: 'Lato', sans-serif;
         font-size: 1.6rem;
     }
 `;

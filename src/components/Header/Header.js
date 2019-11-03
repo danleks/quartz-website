@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import Logo from 'components/Logo/Logo';
 import Hamburger from 'components/Hamburger/Hamburger';
@@ -8,12 +9,13 @@ import DesktopMenu from 'components/DesktopMenu/DesktopMenu';
 const StyledNav = styled.nav`
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
-  padding: 3rem 2.5rem;
+  width: 100vw;
+  height: 6rem;
+  padding-left: 2rem;
   background-color: ${({ theme, menuStyles }) =>
     menuStyles ? theme.color.white : 'transparent'};
   box-shadow: ${({ menuStyles }) =>
@@ -22,7 +24,7 @@ const StyledNav = styled.nav`
   transform: translateY(
     ${({ showMenu, menuIsOpen }) => (showMenu || menuIsOpen ? '0' : '-100%')}
   );
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in-out;
 
   & > :nth-child(1) {
     z-index: 100;
@@ -30,11 +32,11 @@ const StyledNav = styled.nav`
 
   ${({ theme }) => theme.mq.desktop} {
     justify-content: center;
-    padding: ${({ menuStyles }) => (menuStyles ? '3rem 7rem' : '6rem 7rem')};
+    height: 8rem;
   }
 `;
 
-const Header = () => {
+const Header = ({ pathname }) => {
   useEffect(() => {
     window.addEventListener('scroll', showMenuHandler);
   });
@@ -52,7 +54,12 @@ const Header = () => {
     setLastScroll(scrollTop);
   };
 
-  const hamburgerHandler = () => setMenuState(!menuIsOpen);
+  const hamburgerHandler = () => {
+    !menuIsOpen
+      ? (document.querySelector('body').style.overflow = 'hidden')
+      : (document.querySelector('body').style.overflow = 'auto');
+    setMenuState(!menuIsOpen);
+  };
 
   return (
     <StyledNav
@@ -61,11 +68,24 @@ const Header = () => {
       menuIsOpen={menuIsOpen}
     >
       {/* <Logo /> */}
-      <Hamburger onClick={hamburgerHandler} menuIsOpen={menuIsOpen} />
-      <MobileMenu menuIsOpen={menuIsOpen} />
-      <DesktopMenu />
+      <Hamburger
+        onClick={hamburgerHandler}
+        menuIsOpen={menuIsOpen}
+        pathname={pathname}
+        menuStyles={menuStyles}
+      />
+      <MobileMenu menuIsOpen={menuIsOpen} menuHandler={hamburgerHandler} />
+      <DesktopMenu pathname={pathname} menuStyles={menuStyles} />
     </StyledNav>
   );
+};
+
+Header.propTypes = {
+  pathname: PropTypes.string,
+};
+
+Header.defaultProps = {
+  pathname: '/',
 };
 
 export default Header;
