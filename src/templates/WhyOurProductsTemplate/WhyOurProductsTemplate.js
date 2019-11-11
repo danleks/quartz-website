@@ -97,7 +97,6 @@ const StyledHeading = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.mobile.m};
   text-align: center;
   color: ${({ theme }) => theme.color.black};
-  line-height: 2;
 
   ${({ theme }) => theme.mq.tablet} {
     width: 70rem;
