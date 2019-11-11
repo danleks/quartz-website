@@ -76,8 +76,8 @@ const ProductsIntrotemplate = () => {
   return (
     <StyledWrapper>
       <StyledMainImgWrapper fluid={ImagePath}>
-        <StyledParagraph>
-          Powierzchni z naturalnego kwarcu, które zaspokoją{' '}
+        <StyledParagraph data-sal="slide-up" data-sal-duration="1000">
+          Powierzchni z naturalnego kwarcu, które zaspokoją
           <StyledInnerText>różne gusta i potrzeby</StyledInnerText>.
         </StyledParagraph>
         <StyledOverlay />

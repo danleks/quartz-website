@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import BackgroundImage from 'gatsby-background-image';
-import { useStaticQuery, graphql } from 'gatsby';
+import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 import SearchProducts from 'components/SearchProducts/SearchProducts';
 
 const StyledWrapper = styled.div`
   max-width: 130rem;
-  padding: 5rem 2rem;
+  padding: 5rem 6rem;
   margin: auto;
 `;
 
@@ -24,13 +25,15 @@ const StyledListWrapper = styled.ul`
   }
 `;
 
-const StyledImg = styled(BackgroundImage)`
+const StyledImg = styled(Img)`
   width: 100%;
-  height: 30rem;
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 35rem;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+
+  ${({ theme }) => theme.mq.preDesktop} {
+    height: 50rem;
+  }
 
   :hover {
     transform: scale(1.05);
@@ -43,15 +46,8 @@ const StyledListItem = styled.li`
   margin-bottom: 5rem;
 
   ${({ theme }) => theme.mq.preDesktop} {
-    max-width: calc(50% - 3rem);
-
-    :not(:nth-child(1), :nth-child(2)) {
-      margin: 3rem 0;
-    }
-
-    :nth-child(odd) {
-      margin-right: 6rem;
-    }
+    max-width: calc(33% - 8rem);
+    margin: 0 4rem 5rem;
   }
 `;
 
@@ -66,34 +62,14 @@ const StyledSearchProductsWrapper = styled.div`
   margin-bottom: 5rem;
 `;
 
-const ProductsListTemplate = () => {
-  const data = useStaticQuery(graphql`
-    query ProductsListQuery {
-      allFile(filter: { relativeDirectory: { eq: "surfaces" } }) {
-        edges {
-          node {
-            id
-            childImageSharp {
-              fluid {
-                sizes
-                src
-                srcSet
-                srcSetWebp
-                srcWebp
-                originalName
-                aspectRatio
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
-  const imageList = data.allFile.edges;
+const ProductsListTemplate = ({ dataList }) => {
   const [inputValue, setInputValue] = useState('');
 
-  const handleInputChange = e => setInputValue(e.target.value);
+  const handleInputChange = e => setInputValue(e.target.value.toLowerCase());
 
   const filterItems = (inputValue, item) => {
     return item.includes(inputValue);
@@ -104,25 +80,30 @@ const ProductsListTemplate = () => {
       <StyledSearchProductsWrapper>
         <SearchProducts onChange={handleInputChange} value={inputValue} />
       </StyledSearchProductsWrapper>
-      <StyledListWrapper>
-        {imageList
+      <StyledListWrapper data-sal="fade" data-sal-duration="1000">
+        {dataList
           .filter(item =>
-            filterItems(
-              inputValue,
-              item.node.childImageSharp.fluid.originalName.split('.')[0]
-            )
+            filterItems(inputValue, item.node.frontmatter.title.toLowerCase())
           )
           .map(image => (
-            <StyledListItem key={image.node.id}>
-              <StyledImg fluid={image.node.childImageSharp.fluid} />
-              <StyledTitle>
-                {image.node.childImageSharp.fluid.originalName.split('.')[0]}
-              </StyledTitle>
+            <StyledListItem key={image.node.frontmatter.featuredImage.id}>
+              <StyledLink to={image.node.fields.slug}>
+                <StyledImg
+                  fluid={
+                    image.node.frontmatter.featuredImage.childImageSharp.fluid
+                  }
+                />
+                <StyledTitle>{image.node.frontmatter.title}</StyledTitle>
+              </StyledLink>
             </StyledListItem>
           ))}
       </StyledListWrapper>
     </StyledWrapper>
   );
+};
+
+ProductsListTemplate.propTypes = {
+  dataList: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default ProductsListTemplate;

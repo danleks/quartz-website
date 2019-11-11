@@ -6,15 +6,15 @@ import styled from 'styled-components';
 const MenuItems = [
   {
     title: 'Usługi',
-    linkTo: '#uslugi',
+    linkTo: '/#uslugi',
   },
   {
     title: 'O nas',
-    linkTo: '#o-nas',
+    linkTo: '/#o-nas',
   },
   {
     title: 'Produkty',
-    linkTo: '#dlaczego-nasze-produkty',
+    linkTo: '/#dlaczego-nasze-produkty',
   },
   {
     title: 'Kontakt',
@@ -58,10 +58,7 @@ const StyledLink = styled.a`
     height: 100%;
     font-size: ${({ theme }) => theme.fontSize.desktop.xxs};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
-    color: ${({ theme, pathname, menuStyles }) =>
-      pathname.includes('/produkty') && !menuStyles
-        ? theme.color.white
-        : theme.color.black};
+    color: ${({ theme }) => theme.color.black};
     text-decoration: none;
   }
 
@@ -71,10 +68,7 @@ const StyledLink = styled.a`
     bottom: 2rem;
     width: 100%;
     height: 2px;
-    background-color: ${({ theme, pathname, menuStyles }) =>
-      pathname.includes('/produkty') && !menuStyles
-        ? theme.color.white
-        : theme.color.primary};
+    background-color: ${({ theme }) => theme.color.primary};
     transform: scaleX(0);
     transform-origin: center center;
     transition: transform 0.3s ease-in-out;
@@ -85,15 +79,11 @@ const StyledLink = styled.a`
   }
 `;
 
-const DesktopMenu = ({ pathname, menuStyles }) => (
+const DesktopMenu = ({ menuStyles }) => (
   <StyledMenuWrapper>
     {MenuItems.map(item => (
       <StyledLinkWrapper key={item.title}>
-        <StyledLink
-          to={item.linkTo}
-          pathname={pathname}
-          menuStyles={menuStyles}
-        >
+        <StyledLink href={item.linkTo} menuStyles={menuStyles}>
           {item.title}
         </StyledLink>
       </StyledLinkWrapper>
@@ -103,11 +93,6 @@ const DesktopMenu = ({ pathname, menuStyles }) => (
 
 DesktopMenu.propTypes = {
   menuStyles: PropTypes.bool.isRequired,
-  pathname: PropTypes.string,
-};
-
-DesktopMenu.defaultProps = {
-  pathname: '/',
 };
 
 export default DesktopMenu;

@@ -21,10 +21,7 @@ const StyledHamburgerContent = styled.div`
   position: relative;
   width: 100%;
   height: ${({ menuIsOpen }) => (menuIsOpen ? '0' : '2px')};
-  background-color: ${({ theme, pathname, menuIsOpen, menuStyles }) =>
-    pathname.includes('/produkty') && !menuIsOpen && !menuStyles
-      ? theme.color.white
-      : theme.color.black};
+  background-color: ${({ theme }) => theme.color.black};
 
   ::before,
   ::after {
@@ -33,10 +30,7 @@ const StyledHamburgerContent = styled.div`
     left: 0;
     width: 85%;
     height: 2px;
-    background-color: ${({ theme, pathname, menuIsOpen, menuStyles }) =>
-      pathname.includes('/produkty') && !menuIsOpen && !menuStyles
-        ? theme.color.white
-        : theme.color.black};
+    background-color: ${({ theme }) => theme.color.black};
     transition: transform 0.25s ease-in-out;
   }
 
@@ -53,24 +47,15 @@ const StyledHamburgerContent = styled.div`
   }
 `;
 
-const Hamburger = ({ menuIsOpen, menuStyles, pathname, ...props }) => (
+const Hamburger = ({ menuIsOpen, menuStyles, ...props }) => (
   <StyledHamburgerButton menuIsOpen={menuIsOpen} {...props}>
-    <StyledHamburgerContent
-      menuIsOpen={menuIsOpen}
-      pathname={pathname}
-      menuStyles={menuStyles}
-    />
+    <StyledHamburgerContent menuIsOpen={menuIsOpen} menuStyles={menuStyles} />
   </StyledHamburgerButton>
 );
 
 Hamburger.propTypes = {
   menuIsOpen: PropTypes.bool.isRequired,
   menuStyles: PropTypes.bool.isRequired,
-  pathname: PropTypes.string,
-};
-
-Hamburger.defaultProps = {
-  pathname: '/',
 };
 
 export default Hamburger;

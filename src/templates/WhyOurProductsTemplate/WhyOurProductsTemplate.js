@@ -68,6 +68,7 @@ const StyledWrapper = styled.div`
     white 0,
     ${({ theme }) => theme.color.lightGrey} 0
   );
+  /* overflow-x: hidden; */
 
   ${({ theme }) => theme.mq.small} {
     padding: 12rem 0rem;
@@ -83,7 +84,7 @@ const StyledWrapper = styled.div`
   }
 
   ${({ theme }) => theme.mq.desktop} {
-    padding: 12rem 4rem 10rem;
+    padding: 12rem 12rem 10rem;
     background-image: linear-gradient(
       115deg,
       white 50%,
@@ -96,6 +97,7 @@ const StyledHeading = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.mobile.m};
   text-align: center;
   color: ${({ theme }) => theme.color.black};
+  line-height: 2;
 
   ${({ theme }) => theme.mq.tablet} {
     width: 70rem;
@@ -105,12 +107,18 @@ const StyledHeading = styled.h2`
   }
 
   ${({ theme }) => theme.mq.desktop} {
+    width: 80rem;
+    align-self: flex-start;
+    text-align: left;
     font-size: ${({ theme }) => theme.fontSize.desktop.l};
   }
 `;
 
 const StyledButton = styled(Button)`
   margin-top: 4rem;
+  ${({ theme }) => theme.mq.desktop} {
+    align-self: flex-start;
+  }
 `;
 
 const StyledList = styled.ul`
@@ -179,22 +187,28 @@ const StyledParagraph = styled.span`
   }
 `;
 
-const WhyOurProductsTemplate = () => (
-  <StyledWrapper id="dlaczego-nasze-produkty">
-    <StyledHeading>
-      Dowiedź się dlaczego nasze konglomeraty są wyjątkowe
-    </StyledHeading>
-    <StyledButton>Poznaj ofertę</StyledButton>
-    <StyledList>
-      {whyOurProducts.map(productOverview => (
-        <StyledListItem key={productOverview.title}>
-          <StyledIcon src={productOverview.icon} />
-          <StyledSubHeading>{productOverview.title}</StyledSubHeading>
-          <StyledParagraph>{productOverview.text}</StyledParagraph>
-        </StyledListItem>
-      ))}
-    </StyledList>
-  </StyledWrapper>
-);
+const WhyOurProductsTemplate = () => {
+  return (
+    <StyledWrapper id="dlaczego-nasze-produkty">
+      <StyledHeading data-sal="fade" data-sal-duration="1000">
+        Dowiedź się dlaczego nasze konglomeraty są wyjątkowe
+      </StyledHeading>
+      <StyledButton>Poznaj ofertę</StyledButton>
+      <StyledList>
+        {whyOurProducts.map(productOverview => (
+          <StyledListItem
+            key={productOverview.title}
+            data-sal="slide-up"
+            data-sal-duration="1000"
+          >
+            <StyledIcon src={productOverview.icon} />
+            <StyledSubHeading>{productOverview.title}</StyledSubHeading>
+            <StyledParagraph>{productOverview.text}</StyledParagraph>
+          </StyledListItem>
+        ))}
+      </StyledList>
+    </StyledWrapper>
+  );
+};
 
 export default WhyOurProductsTemplate;

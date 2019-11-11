@@ -115,12 +115,16 @@ const StyledMailTo = styled.a`
 `;
 
 const ContactTemplate = () => (
-  <StyledFooter id="kontakt">
+  <StyledFooter id="kontakt" data-sal="slide-up" data-sal-duration="1000">
     <StyledButton contact href="mailto:kwarctex@gmail.com">
       Kontakt
     </StyledButton>
     <StyledContactWrapper>
-      <StyledInnerWrapper>
+      <StyledInnerWrapper
+        data-sal="slide-up"
+        data-sal-duration="1000"
+        data-sal-delay="300"
+      >
         <h3>Adres</h3>
         <span>Belenco</span>
         <span>ul. Lotnicza 1</span>
@@ -128,17 +132,29 @@ const ContactTemplate = () => (
           05-800 Nowy Dwór <br /> Mazowiecki
         </span>
       </StyledInnerWrapper>
-      <StyledInnerWrapper>
+      <StyledInnerWrapper
+        data-sal="slide-up"
+        data-sal-duration="1000"
+        data-sal-delay="400"
+      >
         <h3>Dane firmowe</h3>
         <span>VAT: PL12345567789</span>
         <span>REGON: 1234324</span>
         <span>KRS: 34343423</span>
       </StyledInnerWrapper>
-      <StyledInnerWrapper>
+      <StyledInnerWrapper
+        data-sal="slide-up"
+        data-sal-duration="1000"
+        data-sal-delay="500"
+      >
         <h3>Numer telefonu</h3>
         <span>+48 123 456 789</span>
       </StyledInnerWrapper>
-      <StyledInnerWrapper>
+      <StyledInnerWrapper
+        data-sal="slide-up"
+        data-sal-duration="1000"
+        data-sal-delay="600"
+      >
         <h3>E-mail</h3>
         <span>
           <StyledMailTo href="mailto:kwarctex@gmail.com">
@@ -146,7 +162,11 @@ const ContactTemplate = () => (
           </StyledMailTo>
         </span>
       </StyledInnerWrapper>
-      <StyledInnerWrapper>
+      <StyledInnerWrapper
+        data-sal="slide-up"
+        data-sal-duration="1000"
+        data-sal-delay="600"
+      >
         <span>&copy; Copyright 2019 Belenco. All Rights Reserved.</span>
       </StyledInnerWrapper>
     </StyledContactWrapper>

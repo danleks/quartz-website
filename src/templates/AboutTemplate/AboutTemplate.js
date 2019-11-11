@@ -16,6 +16,7 @@ const StyledWrapper = styled.div`
     ${({ theme }) => theme.color.lightGrey} 35%,
     ${({ theme }) => theme.color.white} 35%
   );
+  overflow-x: hidden;
 
   ${({ theme }) => theme.mq.small} {
     padding: 0 2rem;
@@ -62,9 +63,9 @@ const StyledButton = styled(Button)`
 
 const AboutTemplate = () => (
   <StyledWrapper id="o-nas">
-    <StyledParagraph>
+    <StyledParagraph data-sal="slide-down" data-sal-duration="1000">
       Kwarctex jest dystrybutorem konglameratów kwarcowych. Posiadamy wyłączne
-      prawo na sprzedaż produktów Belenco, co zapewnia wysoką jakość w
+      prawo na sprzedaż produktów Belenco, co zapewnia wysoką jakość w
       konkurencyjnej cenie.
     </StyledParagraph>
     <StyledButton>Poznaj ofertę</StyledButton>

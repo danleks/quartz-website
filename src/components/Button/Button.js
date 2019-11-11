@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // import { Link } from 'gatsby';
 
 const Button = styled.a`
+  display: inline-block;
   padding: 2rem 1rem;
   font-size: ${({ theme, contact }) =>
     contact ? theme.fontSize.mobile.l : theme.fontSize.mobile.s};

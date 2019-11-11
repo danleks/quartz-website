@@ -1,19 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import Header from 'components/Header/Header';
 import Button from 'components/Button/Button';
-import BackgroundImage from 'gatsby-background-image';
-import { useStaticQuery, graphql } from 'gatsby';
+import BGIMG from 'assets/images/hero.jpg';
+// import BackgroundImage from 'gatsby-background-image';
+// import { useStaticQuery, graphql } from 'gatsby';
 
-const StyledHeroWrapper = styled(BackgroundImage)`
+const StyledHeroWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 70vh;
+  background-image: url(${BGIMG});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 75% 0;
+  overflow-x: hidden;
 
   ${({ theme }) => theme.mq.tablet} {
     height: 90vh;
@@ -44,25 +48,28 @@ const StyledButton = styled(Button)`
 `;
 
 const Hero = () => {
-  const data = useStaticQuery(graphql`
-    query HeroQuery {
-      file(relativePath: { eq: "hero.jpg" }) {
-        id
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  `);
+  // const data = useStaticQuery(graphql`
+  //   query HeroQuery {
+  //     file(relativePath: { eq: "hero.jpg" }) {
+  //       id
+  //       childImageSharp {
+  //         fluid(quality: 100) {
+  //           ...GatsbyImageSharpFluid_withWebp
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
-  const ImagePath = data.file.childImageSharp.fluid;
+  // const ImagePath = data.file.childImageSharp.fluid;
 
   return (
     <>
-      <StyledHeroWrapper fluid={ImagePath}>
-        <StyledHeading>Belenco</StyledHeading>
+      <StyledHeroWrapper>
+        <Header />
+        <StyledHeading data-sal="slide-up" data-sal-duration="1000">
+          Belenco
+        </StyledHeading>
         <StyledButton href="/produkty">Poznaj ofertę</StyledButton>
       </StyledHeroWrapper>
     </>

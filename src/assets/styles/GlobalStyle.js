@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family: 'Lato', sans-serif;
         font-size: 1.6rem;
+        overflow-x: hidden;
     }
 `;
 

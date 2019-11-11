@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import Logo from 'components/Logo/Logo';
 import Hamburger from 'components/Hamburger/Hamburger';
@@ -9,22 +8,19 @@ import DesktopMenu from 'components/DesktopMenu/DesktopMenu';
 const StyledNav = styled.nav`
   position: fixed;
   top: 0;
-  left: 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100vw;
   height: 6rem;
   padding-left: 2rem;
-  background-color: ${({ theme, menuStyles }) =>
-    menuStyles ? theme.color.white : 'transparent'};
+  background-color: ${({ menuStyles }) =>
+    menuStyles ? 'white' : 'transparent'};
   box-shadow: ${({ menuStyles }) =>
     menuStyles ? 'hsla(0, 0%, 5%, .2) 0px 1px 3px' : 'none'};
   z-index: 100;
-  transform: translateY(
-    ${({ showMenu, menuIsOpen }) => (showMenu || menuIsOpen ? '0' : '-100%')}
-  );
-  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  transition: background-color 0.5s ease 0s;
 
   & > :nth-child(1) {
     z-index: 100;
@@ -36,22 +32,27 @@ const StyledNav = styled.nav`
   }
 `;
 
-const Header = ({ pathname }) => {
+const Header = () => {
   useEffect(() => {
     window.addEventListener('scroll', showMenuHandler);
   });
 
   const [menuIsOpen, setMenuState] = useState(false);
-  const [lastScrollTop, setLastScroll] = useState(0);
-  const [showMenu, setMenu] = useState(true);
+  // const [lastScrollTop, setLastScroll] = useState(0);
+  // const [showMenu, setMenu] = useState(true);
   const [menuStyles, setStyles] = useState(false);
+  // const [translateY, setTranslateY] = useState(0);
 
   const showMenuHandler = () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let currentScrollTop = window.pageYOffset;
 
-    scrollTop > 200 ? setStyles(true) : setStyles(false);
-    scrollTop > lastScrollTop ? setMenu(false) : setMenu(true);
-    setLastScroll(scrollTop);
+    if (currentScrollTop > 50) {
+      setStyles(true);
+    } else {
+      setStyles(false);
+    }
+
+    //setLastScroll(currentScrollTop);
   };
 
   const hamburgerHandler = () => {
@@ -63,7 +64,7 @@ const Header = ({ pathname }) => {
 
   return (
     <StyledNav
-      showMenu={showMenu}
+      // showMenu={showMenu}
       menuStyles={menuStyles}
       menuIsOpen={menuIsOpen}
     >
@@ -71,21 +72,12 @@ const Header = ({ pathname }) => {
       <Hamburger
         onClick={hamburgerHandler}
         menuIsOpen={menuIsOpen}
-        pathname={pathname}
         menuStyles={menuStyles}
       />
       <MobileMenu menuIsOpen={menuIsOpen} menuHandler={hamburgerHandler} />
-      <DesktopMenu pathname={pathname} menuStyles={menuStyles} />
+      <DesktopMenu />
     </StyledNav>
   );
-};
-
-Header.propTypes = {
-  pathname: PropTypes.string,
-};
-
-Header.defaultProps = {
-  pathname: '/',
 };
 
 export default Header;
