@@ -17,7 +17,7 @@ const StyledHeroWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 75% 0;
-  overflow-x: hidden;
+  overflow: hidden;
 
   ${({ theme }) => theme.mq.tablet} {
     height: 90vh;
@@ -70,7 +70,7 @@ const Hero = () => {
         <StyledHeading data-sal="slide-up" data-sal-duration="1000">
           Belenco
         </StyledHeading>
-        <StyledButton href="/produkty">Poznaj ofertę</StyledButton>
+        <StyledButton to="/produkty">Poznaj ofertę</StyledButton>
       </StyledHeroWrapper>
     </>
   );

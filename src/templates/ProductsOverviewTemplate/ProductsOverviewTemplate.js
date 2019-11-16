@@ -169,7 +169,9 @@ const ProductsOverviewTemplate = () => (
         </StyledListItem>
       ))}
       <StyledButtonWrapper>
-        <Button product>Poznaj ofertę</Button>
+        <Button to="/produkty" product>
+          Poznaj ofertę
+        </Button>
       </StyledButtonWrapper>
     </StyledList>
   </StyledWrapper>

@@ -39,6 +39,15 @@ const StyledTitle = styled.h2`
     left: 5rem;
     font-size: ${({ theme }) => theme.fontSize.tablet.l};
   }
+
+  ${({ theme }) => theme.mq.desktop} {
+    top: 22%;
+    bottom: unset;
+    left: -26rem;
+    font-size: ${({ theme }) => theme.fontSize.desktop.xxl};
+    color: ${({ theme }) => theme.color.black};
+    background-color: transparent;
+  }
 `;
 
 const StyledImg = styled(Img)`
@@ -66,10 +75,70 @@ const StyledDescription = styled.p`
     padding-right: 3rem;
     font-size: ${({ theme }) => theme.fontSize.tablet.m};
   }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 23rem;
+    margin-top: 3rem;
+    font-size: ${({ theme }) => theme.fontSize.mobile.xs};
+  }
 `;
 
 const StyledButton = styled(Button)`
   margin-bottom: 2rem;
+`;
+
+const StyledNextItemLink = styled(Link)`
+  position: relative;
+  height: 100%;
+  text-decoration: none;
+  color: transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 15rem;
+    height: 15rem;
+    transform: translate(-100%, -50%) rotate(45deg);
+    background-color: transparent;
+    border: 2px solid;
+    border-color: ${({ theme }) => theme.color.midGrey}
+      ${({ theme }) => theme.color.midGrey} transparent transparent;
+  }
+`;
+
+const StyledCloseButton = styled(Link)`
+  position: absolute;
+  top: 11%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.color.black};
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.7rem;
+    height: 2px;
+    transform: translate(-50%, -50%);
+    background-color: ${({ theme }) => theme.color.white};
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    top: 5%;
+  }
 `;
 
 const StyledInnerWrapper = styled.div`
@@ -101,13 +170,24 @@ const StyledInnerWrapper = styled.div`
     }
 
     ${({ theme }) => theme.mq.desktop} {
+      position: relative;
       order: 1;
+
+      & > div {
+        position: absolute;
+        top: 38%;
+        right: 4%;
+      }
     }
   }
 
   :last-child {
     max-height: 25%;
     cursor: pointer;
+
+    & > div {
+      display: none;
+    }
 
     ${({ theme }) => theme.mq.tablet} {
       max-height: 10%;
@@ -116,9 +196,25 @@ const StyledInnerWrapper = styled.div`
 
     ${({ theme }) => theme.mq.desktop} {
       order: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      max-height: 100vh;
+      cursor: auto;
+      background-color: transparent;
+      transition: background-color 0.3s ease-in-out;
 
-      & > * {
+      & > div {
+        display: block;
+      }
+
+      & > :not(div) {
         display: none;
+      }
+
+      &:hover {
+        background-color: ${({ theme }) => theme.color.primaryLight};
       }
     }
   }
@@ -137,49 +233,77 @@ const ProductTemplate = ({ data }) => {
       <ThemeProvider theme={theme}>
         <StyledWrapper>
           <StyledInnerWrapper>
-            <StyledTitle>{title}</StyledTitle>
+            <StyledTitle data-sal="fade" data-sal-duration="800">
+              {title}
+            </StyledTitle>
             <StyledImg fluid={img} alt={title} />
+            <StyledCloseButton to="/produkty" />
           </StyledInnerWrapper>
           <StyledInnerWrapper>
-            <StyledProductIndex>{productIndex}</StyledProductIndex>
-            <StyledDescription>{description}</StyledDescription>
-            <StyledButton>Pobierz cennik</StyledButton>
+            <div>
+              <StyledProductIndex
+                data-sal="slide-up"
+                data-sal-duration="800"
+                data-sal-delay="300"
+              >
+                {productIndex}
+              </StyledProductIndex>
+              <StyledDescription
+                data-sal="slide-up"
+                data-sal-duration="800"
+                data-sal-delay="400"
+              >
+                {description}
+              </StyledDescription>
+              <StyledButton>Pobierz cennik</StyledButton>
+            </div>
           </StyledInnerWrapper>
           <StyledInnerWrapper>
             {data.allMarkdownRemark.edges.map((edge, i) => {
               const setHTML = (loopIndex, increment) => {
                 return (
-                  <Link
-                    to={
-                      data.allMarkdownRemark.edges[loopIndex + increment].node
-                        .fields.slug
-                    }
-                  >
-                    <StyledTitle next>
-                      {
-                        data.allMarkdownRemark.edges[
-                          loopIndex + increment
-                        ].node.frontmatter.title.split(' ')[0]
-                      }
-                    </StyledTitle>
-                    <StyledImg
-                      key={
+                  <>
+                    <Link
+                      to={
                         data.allMarkdownRemark.edges[loopIndex + increment].node
-                          .frontmatter.featuredImage.childImageSharp.id
+                          .fields.slug
                       }
-                      fluid={
-                        data.allMarkdownRemark.edges[loopIndex + increment].node
-                          .frontmatter.featuredImage.childImageSharp.fluid
-                      }
-                    />
-                  </Link>
+                    >
+                      <StyledTitle next>
+                        {
+                          data.allMarkdownRemark.edges[
+                            loopIndex + increment
+                          ].node.frontmatter.title.split(' ')[0]
+                        }
+                      </StyledTitle>
+                      <StyledImg
+                        key={
+                          data.allMarkdownRemark.edges[loopIndex + increment]
+                            .node.frontmatter.featuredImage.childImageSharp.id
+                        }
+                        fluid={
+                          data.allMarkdownRemark.edges[loopIndex + increment]
+                            .node.frontmatter.featuredImage.childImageSharp
+                            .fluid
+                        }
+                      />
+                    </Link>
+                    <div>
+                      <StyledNextItemLink
+                        to={
+                          data.allMarkdownRemark.edges[loopIndex + increment]
+                            .node.fields.slug
+                        }
+                      />
+                    </div>
+                  </>
                 );
               };
               if (
                 edge.node.frontmatter.featuredImage.childImageSharp.id ==
                 data.markdownRemark.frontmatter.featuredImage.childImageSharp.id
               ) {
-                if (i + 1 < data.allMarkdownRemark.edges.length) {
+                if (i < data.allMarkdownRemark.edges.length - 1) {
                   return setHTML(i, 1);
                 } else {
                   return setHTML(0, 0);

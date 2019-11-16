@@ -8,6 +8,13 @@ module.exports = {
   },
   pathPrefix: '/kwarctex',
   plugins: [
+    `gatsby-plugin-transition-link`,
+    {
+      resolve: 'gatsby-plugin-page-transitions',
+      options: {
+        transitionTime: 2000,
+      },
+    },
     {
       resolve: `gatsby-plugin-scroll-reveal`,
       options: {

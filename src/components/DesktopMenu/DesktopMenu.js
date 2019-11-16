@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import { Link } from 'gatsby';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 const MenuItems = [
@@ -18,7 +17,7 @@ const MenuItems = [
   },
   {
     title: 'Kontakt',
-    linkTo: '#kontakt',
+    linkTo: '/#kontakt',
   },
 ];
 
@@ -48,7 +47,7 @@ const StyledLinkWrapper = styled.li`
   }
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   &,
   &:link,
   &:visited,
@@ -79,20 +78,14 @@ const StyledLink = styled.a`
   }
 `;
 
-const DesktopMenu = ({ menuStyles }) => (
+const DesktopMenu = () => (
   <StyledMenuWrapper>
     {MenuItems.map(item => (
       <StyledLinkWrapper key={item.title}>
-        <StyledLink href={item.linkTo} menuStyles={menuStyles}>
-          {item.title}
-        </StyledLink>
+        <StyledLink to={item.linkTo}>{item.title}</StyledLink>
       </StyledLinkWrapper>
     ))}
   </StyledMenuWrapper>
 );
-
-DesktopMenu.propTypes = {
-  menuStyles: PropTypes.bool.isRequired,
-};
 
 export default DesktopMenu;

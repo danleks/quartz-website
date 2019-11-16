@@ -50,10 +50,12 @@ const whyOurProducts = [
 ];
 
 const StyledIcon = styled(Icon)`
-  width: 22%;
-  border: 1px solid ${({ theme }) => theme.color.midGrey};
-  border-radius: 30%;
-  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
 `;
 
 const StyledWrapper = styled.div`
@@ -84,12 +86,16 @@ const StyledWrapper = styled.div`
   }
 
   ${({ theme }) => theme.mq.desktop} {
-    padding: 12rem 12rem 10rem;
+    padding: 12rem 4rem 10rem;
     background-image: linear-gradient(
       115deg,
       white 50%,
       ${({ theme }) => theme.color.lightGrey} 50%
     );
+  }
+
+  ${({ theme }) => theme.mq.huge} {
+    padding: 12rem 12rem 10rem;
   }
 `;
 
@@ -121,7 +127,7 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledList = styled.ul`
-  max-width: 115rem;
+  max-width: 130rem;
   margin-top: 4rem;
   list-style: none;
 
@@ -192,13 +198,14 @@ const WhyOurProductsTemplate = () => {
       <StyledHeading data-sal="fade" data-sal-duration="1000">
         Dowiedź się dlaczego nasze konglomeraty są wyjątkowe
       </StyledHeading>
-      <StyledButton>Poznaj ofertę</StyledButton>
+      <StyledButton to="/produkty">Poznaj ofertę</StyledButton>
       <StyledList>
-        {whyOurProducts.map(productOverview => (
+        {whyOurProducts.map((productOverview, index) => (
           <StyledListItem
             key={productOverview.title}
             data-sal="slide-up"
             data-sal-duration="1000"
+            data-sal-delay={100 * (index + 5)}
           >
             <StyledIcon src={productOverview.icon} />
             <StyledSubHeading>{productOverview.title}</StyledSubHeading>

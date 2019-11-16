@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import window from 'global';
-// import { Link } from 'gatsby';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Button from 'components/Button/Button';
 
@@ -51,7 +51,7 @@ const StyledLinkWrapper = styled.li`
   } */
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   font-size: ${({ theme }) => theme.fontSize.mobile.s};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   text-decoration: none;
@@ -78,19 +78,19 @@ const StyledLink = styled.a`
 const MenuItems = [
   {
     title: 'Usługi',
-    linkTo: '#uslugi',
+    linkTo: '/#uslugi',
   },
   {
     title: 'O nas',
-    linkTo: '#o-nas',
+    linkTo: '/#o-nas',
   },
   {
     title: 'Produkty',
-    linkTo: '#dlaczego-nasze-produkty',
+    linkTo: '/#dlaczego-nasze-produkty',
   },
   {
     title: 'Kontakt',
-    linkTo: '#kontakt',
+    linkTo: '/#kontakt',
   },
 ];
 
@@ -104,11 +104,13 @@ const MobileMenu = ({ menuIsOpen, menuHandler }) => {
             menuIsOpen={menuIsOpen}
             onClick={menuHandler}
           >
-            <StyledLink href={item.linkTo}>{item.title}</StyledLink>
+            <StyledLink to={item.linkTo}>{item.title}</StyledLink>
           </StyledLinkWrapper>
         ))}
         <StyledLinkWrapper menuIsOpen={menuIsOpen}>
-          <Button menu>Pobierz cennik</Button>
+          <Button to="/" menu>
+            Pobierz cennik
+          </Button>
         </StyledLinkWrapper>
       </StyledInnerWrapper>
     </StyledMenuWrapper>

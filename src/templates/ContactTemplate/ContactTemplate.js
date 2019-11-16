@@ -115,8 +115,8 @@ const StyledMailTo = styled.a`
 `;
 
 const ContactTemplate = () => (
-  <StyledFooter id="kontakt" data-sal="slide-up" data-sal-duration="1000">
-    <StyledButton contact href="mailto:kwarctex@gmail.com">
+  <StyledFooter id="kontakt" data-sal="fade" data-sal-duration="1000">
+    <StyledButton contact to="mailto:kwarctex@gmail.com">
       Kontakt
     </StyledButton>
     <StyledContactWrapper>

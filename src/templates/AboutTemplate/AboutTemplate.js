@@ -62,13 +62,22 @@ const StyledButton = styled(Button)`
 `;
 
 const AboutTemplate = () => (
-  <StyledWrapper id="o-nas">
-    <StyledParagraph data-sal="slide-down" data-sal-duration="1000">
+  <StyledWrapper
+    id="o-nas"
+    data-sal="slide-up"
+    data-sal-duration="1000"
+    data-sal-delay="800"
+  >
+    <StyledParagraph
+      data-sal="slide-down"
+      data-sal-duration="1000"
+      data-sal-delay="100"
+    >
       Kwarctex jest dystrybutorem konglameratów kwarcowych. Posiadamy wyłączne
       prawo na sprzedaż produktów Belenco, co zapewnia wysoką jakość w
       konkurencyjnej cenie.
     </StyledParagraph>
-    <StyledButton>Poznaj ofertę</StyledButton>
+    <StyledButton to="/produkty">Poznaj ofertę</StyledButton>
   </StyledWrapper>
 );
 
