@@ -6,14 +6,14 @@ import ProductsListTemplate from 'templates/ProductsListTemplate/ProductsListTem
 
 import { graphql } from 'gatsby';
 
-const ProductsPage = ({ data }) => {
+const ProductsPage = ({ data, location: { pathname } }) => {
   const {
     allMarkdownRemark: { edges },
   } = data;
 
   return (
     <MainTemplate>
-      <ProductsIntrotemplate />
+      <ProductsIntrotemplate pathname={pathname} />
       <ProductsListTemplate dataList={edges} />
     </MainTemplate>
   );
@@ -21,6 +21,12 @@ const ProductsPage = ({ data }) => {
 
 ProductsPage.propTypes = {
   data: PropTypes.objectOf(PropTypes.shape).isRequired,
+  location: PropTypes.objectOf(PropTypes.shape).isRequired,
+  pathname: PropTypes.string,
+};
+
+ProductsPage.defaultProps = {
+  pathname: '/produkty/',
 };
 
 export const query = graphql`

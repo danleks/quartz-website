@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Header from 'components/Header/Header';
 import BackgroundImage from 'gatsby-background-image';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -57,7 +59,7 @@ const StyledOverlay = styled.div`
   background-color: ${({ theme }) => theme.color.dark};
 `;
 
-const ProductsIntrotemplate = () => {
+const ProductsIntrotemplate = ({ pathname }) => {
   const data = useStaticQuery(graphql`
     query ProductsIntroQuery {
       file(relativePath: { eq: "productsBg.jpg" }) {
@@ -75,15 +77,20 @@ const ProductsIntrotemplate = () => {
 
   return (
     <StyledWrapper>
+      <Header pathname={pathname} />
       <StyledMainImgWrapper fluid={ImagePath}>
         <StyledParagraph data-sal="slide-up" data-sal-duration="1000">
           Powierzchni z naturalnego kwarcu, które zaspokoją
-          <StyledInnerText>różne gusta i potrzeby</StyledInnerText>.
+          <StyledInnerText> różne gusta i potrzeby</StyledInnerText>.
         </StyledParagraph>
         <StyledOverlay />
       </StyledMainImgWrapper>
     </StyledWrapper>
   );
+};
+
+ProductsIntrotemplate.propTypes = {
+  pathname: PropTypes.string.isRequired,
 };
 
 export default ProductsIntrotemplate;

@@ -21,6 +21,22 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.6rem;
         overflow-x: hidden;
     }
+
+    body::-webkit-scrollbar {
+        background-color: hsla(0,0%,52%, 1);
+        width: 1rem;
+    }
+    body::-webkit-scrollbar-track {
+        width: 1rem;
+        background-color: hsla(0, 0%, 89%,1);
+    }
+    body::-webkit-scrollbar-thumb {
+        background-color: hsla(0,0%,52%, 1);
+        width: 1rem;
+        height: 4rem;
+        border-radius: 5px;
+    }
+
 `;
 
 export default GlobalStyle;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import TransitionLink from 'gatsby-plugin-transition-link'
 import { Link } from 'gatsby';
 
-const Button = styled(Link)`
+const Button = styled(Link || 'a')`
   display: inline-block;
   padding: 2rem 1rem;
   font-size: ${({ theme, contact }) =>

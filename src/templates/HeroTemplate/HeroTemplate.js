@@ -68,7 +68,7 @@ const Hero = () => {
       <StyledHeroWrapper>
         <Header />
         <StyledHeading data-sal="slide-up" data-sal-duration="1000">
-          Belenco
+          Quartz
         </StyledHeading>
         <StyledButton to="/produkty">Poznaj ofertę</StyledButton>
       </StyledHeroWrapper>

@@ -71,6 +71,9 @@ const StyledInnerWrapper = styled.li`
   }
 
   :last-child {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     padding-top: 2rem;
     border-top: 1px solid ${({ theme }) => theme.color.midGrey};
     margin-bottom: 0;
@@ -91,6 +94,7 @@ const StyledInnerWrapper = styled.li`
     }
 
     span {
+      line-height: unset;
       font-size: ${({ theme }) => theme.fontSize.mobile.xs};
       font-weight: ${({ theme }) => theme.fontWeight.light};
       text-align: center;
@@ -103,7 +107,8 @@ const StyledInnerWrapper = styled.li`
   }
 `;
 
-const StyledMailTo = styled.a`
+const StyledContactMedia = styled.a`
+  font-size: ${({ theme }) => theme.fontSize.mobile.xs};
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -112,11 +117,28 @@ const StyledMailTo = styled.a`
   :hover {
     color: ${({ theme }) => theme.color.darkBlue};
   }
+
+  ${({ theme }) => theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.fontSize.tablet.xs};
+  }
+`;
+
+const StyledIconsWrapper = styled.div`
+  min-width: 100%;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.mobile.xs};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  color: ${({ theme }) => theme.color.darkGrey};
+
+  ${({ theme }) => theme.mq.tablet} {
+    text-align: left;
+  }
 `;
 
 const ContactTemplate = () => (
   <StyledFooter id="kontakt" data-sal="fade" data-sal-duration="1000">
-    <StyledButton contact to="mailto:kwarctex@gmail.com">
+    <StyledButton contact href="mailto:kwarctex@gmail.com">
       Kontakt
     </StyledButton>
     <StyledContactWrapper>
@@ -126,11 +148,9 @@ const ContactTemplate = () => (
         data-sal-delay="300"
       >
         <h3>Adres</h3>
-        <span>Belenco</span>
-        <span>ul. Lotnicza 1</span>
-        <span>
-          05-800 Nowy Dwór <br /> Mazowiecki
-        </span>
+        <span>Quartz</span>
+        <span>ul. Nazwa ulicy 1</span>
+        <span>00-001 Warszawa</span>
       </StyledInnerWrapper>
       <StyledInnerWrapper
         data-sal="slide-up"
@@ -148,7 +168,9 @@ const ContactTemplate = () => (
         data-sal-delay="500"
       >
         <h3>Numer telefonu</h3>
-        <span>+48 123 456 789</span>
+        <StyledContactMedia href="tel:+48 123 456 789">
+          +48 123 456 789
+        </StyledContactMedia>
       </StyledInnerWrapper>
       <StyledInnerWrapper
         data-sal="slide-up"
@@ -156,18 +178,41 @@ const ContactTemplate = () => (
         data-sal-delay="600"
       >
         <h3>E-mail</h3>
-        <span>
-          <StyledMailTo href="mailto:kwarctex@gmail.com">
-            kwarctex@gmail.com
-          </StyledMailTo>
-        </span>
+        <StyledContactMedia href="mailto:kwarctex@gmail.com">
+          test@gmail.com
+        </StyledContactMedia>
       </StyledInnerWrapper>
       <StyledInnerWrapper
         data-sal="slide-up"
         data-sal-duration="1000"
         data-sal-delay="600"
       >
-        <span>&copy; Copyright 2019 Belenco. All Rights Reserved.</span>
+        <StyledIconsWrapper>
+          Icons made by{' '}
+          <StyledContactMedia
+            href="https://www.flaticon.com/authors/smashicons"
+            title="Smashicons"
+          >
+            Smashicons |{' '}
+          </StyledContactMedia>
+          <StyledContactMedia
+            href="https://www.flaticon.com/authors/freepik"
+            title="Freepik"
+          >
+            Freepik |{' '}
+          </StyledContactMedia>
+          <StyledContactMedia
+            href="https://www.flaticon.com/authors/monkik"
+            title="monkik"
+          >
+            monkik |{' '}
+          </StyledContactMedia>
+          from{' '}
+          <StyledContactMedia href="https://www.flaticon.com/" title="Flaticon">
+            www.flaticon.com
+          </StyledContactMedia>
+        </StyledIconsWrapper>
+        <span>&copy; Copyright 2019 Quartz. All Rights Reserved.</span>
       </StyledInnerWrapper>
     </StyledContactWrapper>
   </StyledFooter>

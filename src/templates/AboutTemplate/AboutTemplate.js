@@ -73,8 +73,8 @@ const AboutTemplate = () => (
       data-sal-duration="1000"
       data-sal-delay="100"
     >
-      Kwarctex jest dystrybutorem konglameratów kwarcowych. Posiadamy wyłączne
-      prawo na sprzedaż produktów Belenco, co zapewnia wysoką jakość w
+      Quartz jest dystrybutorem konglameratów kwarcowych. Posiadamy wyłączne
+      prawo na sprzedaż produktów Quartz, co zapewnia wysoką jakość w
       konkurencyjnej cenie.
     </StyledParagraph>
     <StyledButton to="/produkty">Poznaj ofertę</StyledButton>

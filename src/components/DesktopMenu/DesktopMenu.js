@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 const MenuItems = [
+  {
+    title: 'Strona główna',
+    linkTo: '/',
+  },
   {
     title: 'Usługi',
     linkTo: '/#uslugi',
@@ -57,7 +62,10 @@ const StyledLink = styled(Link)`
     height: 100%;
     font-size: ${({ theme }) => theme.fontSize.desktop.xxs};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
-    color: ${({ theme }) => theme.color.black};
+    color: ${({ theme, pathname = '/', menuStyles }) =>
+      pathname.includes('produkty') && !menuStyles
+        ? theme.color.white
+        : theme.color.black};
     text-decoration: none;
   }
 
@@ -67,7 +75,10 @@ const StyledLink = styled(Link)`
     bottom: 2rem;
     width: 100%;
     height: 2px;
-    background-color: ${({ theme }) => theme.color.primary};
+    background-color: ${({ theme, pathname = '/', menuStyles }) =>
+      pathname.includes('produkty') && !menuStyles
+        ? theme.color.white
+        : theme.color.primary};
     transform: scaleX(0);
     transform-origin: center center;
     transition: transform 0.3s ease-in-out;
@@ -78,14 +89,25 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const DesktopMenu = () => (
+const DesktopMenu = ({ pathname, menuStyles }) => (
   <StyledMenuWrapper>
     {MenuItems.map(item => (
       <StyledLinkWrapper key={item.title}>
-        <StyledLink to={item.linkTo}>{item.title}</StyledLink>
+        <StyledLink
+          to={item.linkTo}
+          pathname={pathname}
+          menuStyles={menuStyles}
+        >
+          {item.title}
+        </StyledLink>
       </StyledLinkWrapper>
     ))}
   </StyledMenuWrapper>
 );
+
+DesktopMenu.propTypes = {
+  pathname: PropTypes.string.isRequired,
+  menuStyles: PropTypes.bool.isRequired,
+};
 
 export default DesktopMenu;

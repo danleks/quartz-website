@@ -77,6 +77,10 @@ const StyledLink = styled(Link)`
 
 const MenuItems = [
   {
+    title: 'Strona główna',
+    linkTo: '/',
+  },
+  {
     title: 'Usługi',
     linkTo: '/#uslugi',
   },

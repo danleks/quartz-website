@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 // import Logo from 'components/Logo/Logo';
 import Hamburger from 'components/Hamburger/Hamburger';
@@ -32,7 +33,7 @@ const StyledNav = styled.nav`
   }
 `;
 
-const Header = () => {
+const Header = ({ pathname }) => {
   useEffect(() => {
     window.addEventListener('scroll', showMenuHandler);
   });
@@ -68,16 +69,25 @@ const Header = () => {
       menuStyles={menuStyles}
       menuIsOpen={menuIsOpen}
     >
-      {/* <Logo /> */}
       <Hamburger
         onClick={hamburgerHandler}
         menuIsOpen={menuIsOpen}
         menuStyles={menuStyles}
+        pathname={pathname}
       />
+      {/* <Logo /> */}
       <MobileMenu menuIsOpen={menuIsOpen} menuHandler={hamburgerHandler} />
-      <DesktopMenu />
+      <DesktopMenu menuStyles={menuStyles} pathname={pathname} />
     </StyledNav>
   );
+};
+
+Header.propTypes = {
+  pathname: PropTypes.string,
+};
+
+Header.defaultProps = {
+  pathname: '/',
 };
 
 export default Header;
