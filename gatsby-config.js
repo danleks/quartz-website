@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: `Kwarctex - strona oficjalna`,
-    description: `Kwarctex - strona oficjalna`,
+    title: `Quartz - strona oficjalna`,
+    description: `Quartz - strona oficjalna`,
     author: `@danleks`,
   },
-  pathPrefix: '/kwarctex',
+  pathPrefix: '/quartz',
   plugins: [
     `gatsby-plugin-transition-link`,
     {
