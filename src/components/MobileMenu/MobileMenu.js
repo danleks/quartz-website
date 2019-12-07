@@ -13,7 +13,7 @@ const StyledMenuWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;
+  height: 100%;
   min-height: ${window.innerHeight}px;
   /* height: ${window.innerHeight}px; */
   width: 100%;
