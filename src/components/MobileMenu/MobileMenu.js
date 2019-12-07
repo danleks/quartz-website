@@ -13,8 +13,9 @@ const StyledMenuWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: ${window.innerHeight}px;
-  min-height: 100vh;
+  height: 100vh;  
+  /* height: ${window.innerHeight}px; */
+  min-height: 100%;
   width: 100%;
   transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0px' : '-200%')});
   background-color: ${({ theme }) => theme.color.white};
