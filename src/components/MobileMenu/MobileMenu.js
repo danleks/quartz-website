@@ -17,7 +17,7 @@ const StyledMenuWrapper = styled.div`
   min-height: 100%;
   /* height: ${window.innerHeight}px; */
   width: 100%;
-  transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0px' : '-200%')});
+  transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0px' : '-100%')});
   background-color: ${({ theme }) => theme.color.white};
   z-index: 90;
   transition: transform 0.4s ease-in-out;
