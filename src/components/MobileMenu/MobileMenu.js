@@ -14,7 +14,7 @@ const StyledMenuWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   height: 100%;
-  min-height: ${window.innerHeight}px;
+  min-height: 100%;
   /* height: ${window.innerHeight}px; */
   width: 100%;
   transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0px' : '-200%')});
