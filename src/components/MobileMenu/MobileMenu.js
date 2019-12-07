@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import window from 'global';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import Button from 'components/Button/Button';
+// import Button from 'components/Button/Button';
 
 const StyledMenuWrapper = styled.div`
   position: fixed;
@@ -13,9 +13,9 @@ const StyledMenuWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;  
+  height: 100vh;
+  min-height: ${window.innerHeight}px;
   /* height: ${window.innerHeight}px; */
-  min-height: 100%;
   width: 100%;
   transform: translateY(${({ menuIsOpen }) => (menuIsOpen ? '0px' : '-200%')});
   background-color: ${({ theme }) => theme.color.white};
@@ -112,11 +112,11 @@ const MobileMenu = ({ menuIsOpen, menuHandler }) => {
             <StyledLink to={item.linkTo}>{item.title}</StyledLink>
           </StyledLinkWrapper>
         ))}
-        <StyledLinkWrapper menuIsOpen={menuIsOpen}>
+        {/* <StyledLinkWrapper menuIsOpen={menuIsOpen}>
           <Button to="/" menu>
             Pobierz cennik
           </Button>
-        </StyledLinkWrapper>
+        </StyledLinkWrapper> */}
       </StyledInnerWrapper>
     </StyledMenuWrapper>
   );
